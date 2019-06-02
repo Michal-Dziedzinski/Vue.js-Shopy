@@ -1,5 +1,7 @@
 <template>
-  <h1>{{logoText}}</h1>
+  <h1 class="heading">
+    <router-link to="/" class="heading__link" exact>{{logoText}}</router-link>
+  </h1>
 </template>
 
 <script>
@@ -14,7 +16,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
-h1 {
-  color: $accent;
+.heading {
+  padding: 0 2rem;
+  &__link {
+    color: $light-text;
+  }
 }
 </style>
