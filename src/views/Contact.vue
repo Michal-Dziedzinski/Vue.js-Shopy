@@ -1,15 +1,14 @@
 <template>
-  <div class="home">
+  <div class="contact">
     <Header/>
-    <h1>This is an Home page</h1>
+    <h1>This is an contact page</h1>
   </div>
 </template>
-
 <script>
 import Header from '../components/Header/Header.vue';
 
 export default {
-  name: 'Home',
+  name: 'Contact',
   components: {
     Header,
   },
