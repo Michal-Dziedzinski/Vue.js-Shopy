@@ -30,3 +30,18 @@
   font-weight: 300;
   font-style: normal;
 }
+
+.HeadingSecondary {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.Paragraph {
+  font-size: $default-font-size;
+}
+// .HeadingTertiary {
+//   font-size: $default-font-size;
+//   font-weight: 700;
+//   text-transform: uppercase;
+// }

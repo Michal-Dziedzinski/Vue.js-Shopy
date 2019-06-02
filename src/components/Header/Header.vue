@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Logo from '../UI/Logo/Logo.vue';
-import NavItem from '../UI/NavItem/NavItem.vue';
+import Logo from '@/components/UI/Logo/Logo.vue';
+import NavItem from '@/components/UI/NavItem/NavItem.vue';
 
 export default {
   name: 'Header',
@@ -28,7 +28,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
 .header {
-  display: flex;
   justify-content: space-between;
   position: fixed;
   top: 0;

@@ -18,6 +18,7 @@ export default {
 @import '@/assets/styles/main.scss';
 .heading {
   padding: 0 2rem;
+  font-size: 2.4rem;
   &__link {
     color: $light-text;
   }
