@@ -36,9 +36,10 @@ export default {
   width: 100%;
   height: 5rem;
   @include centerAlign;
+  background-color: $background;
   &__nav {
     display: flex;
-    font-size: 1.4rem;
+    font-size: $default-font-size;
   }
 }
 </style>

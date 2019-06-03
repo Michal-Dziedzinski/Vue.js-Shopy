@@ -39,7 +39,14 @@
 
 .Paragraph {
   font-size: $default-font-size;
+  &--big {
+    font-size: 2rem;
+  }
+  &--white {
+    color: $white;
+  }
 }
+
 // .HeadingTertiary {
 //   font-size: $default-font-size;
 //   font-weight: 700;

@@ -3,7 +3,7 @@
     <Header/>
     <article class="about">
       <div class="about__icon u-margin-bottom-medium">
-        <Icon isColor/>
+        <Icon isColor iconName="contact-book"/>
       </div>
       <h2 class="HeadingSecondary u-margin-bottom-medium">about</h2>
       <p
