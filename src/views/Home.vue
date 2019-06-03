@@ -2,7 +2,7 @@
   <section class="home">
     <Header/>
     <div class="home__content">
-      <Cart :beers="beersToBuy"/>
+      <Cart :beers="beersToBuy" @removeItem="removeItem"/>
       <BeerDetails v-if="selectedBeer" :id="selectedBeer" @addedToCart="sendToCart"/>
       <BeersList v-else/>
     </div>
@@ -34,6 +34,9 @@ export default {
   methods: {
     sendToCart(beer) {
       this.beersToBuy.push(beer);
+    },
+    removeItem(index) {
+      this.beersToBuy.splice(index, 1);
     },
   },
   components: {

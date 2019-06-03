@@ -17,9 +17,10 @@
       <div class="cart__bucket">
         <p class="cart__info Paragraph Paragraph--white" v-if="beers.length === 0">Cart is empty</p>
         <ul class="cart__list">
-          <li class="cart__item" v-for="beer in beers" :key="beer.id">
-            <span class="cart__price">{{beer.srm}}</span>
+          <li class="cart__item" v-for="(beer, index) in beers" :key="beer.id">
+            <span class="cart__price">{{beer.abv}}</span>
             {{beer.name}}
+            <div class="cart__delete" @click="$emit('removeItem', index)"></div>
           </li>
         </ul>
       </div>
@@ -74,9 +75,41 @@ export default {
     width: calc(100% - 2rem);
     padding: 0.5rem;
     margin: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    // display: flex;
+    position: relative;
+    &:hover .cart__delete {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
   &__price {
     color: $accent;
+    padding: 0 0.5rem;
+  }
+  &__delete {
+    transition: transform 0.3s, opacity 0.3s;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: $alert;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    opacity: 0;
+    transform: translateX(1rem);
+    cursor: pointer;
+    &::after {
+      content: '';
+      border-bottom: 2px solid $white;
+      width: 16px;
+      height: 1px;
+      top: 9px;
+      left: 2px;
+      position: absolute;
+    }
   }
 }
 </style>
