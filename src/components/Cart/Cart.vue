@@ -12,7 +12,9 @@
     <div class="cart__element u-margin-bottom-small">
       <div class="cart__icon-group u-margin-bottom-small">
         <Icon iconName="shopping-cart"/>
-        <p class="Paragraph--white Paragraph--big u-margin-left-small">Cart</p>
+        <p
+          class="Paragraph--white Paragraph--big u-margin-left-small"
+        >Cart {{beers.length > 0 ? `(${beers.length})` : null}}</p>
       </div>
       <div class="cart__bucket">
         <p class="cart__info Paragraph Paragraph--white" v-if="beers.length === 0">Cart is empty</p>
