@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <p>{{beer.name}}</p>
-    <p>{{beer.tagline}}</p>
-    <hr>
+  <div class="item">
+    <div class="item__image">
+      <BeerImage :src="beer.image_url" :alt="beer.name"/>
+    </div>
+    <div class="u-margin-top-small">
+      <p class="Paragraph Paragraph--big u-margin-bottom-small">{{beer.name}}</p>
+      <p class="Paragraph">{{beer.tagline}}</p>
+    </div>
   </div>
 </template>
 
 <script>
+import BeerImage from '@/components/UI/BeerImage/BeerImage.vue';
+
 export default {
   name: 'BeerItem',
   props: {
@@ -15,5 +21,20 @@ export default {
       required: true,
     },
   },
+  components: {
+    BeerImage,
+  },
 };
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/styles/main.scss';
+.item {
+  background-color: $white;
+  padding: 1rem;
+  &__image {
+    padding: 0.5rem 0;
+    @include center;
+  }
+}
+</style>

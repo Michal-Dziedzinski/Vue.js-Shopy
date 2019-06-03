@@ -1,6 +1,6 @@
 <template>
   <article class="list">
-    <div v-for="beer in beers" :key="beer.id">
+    <div class="list__item" v-for="beer in beers" :key="beer.id">
       <BeerItem :beer="beer"/>
     </div>
   </article>
@@ -38,6 +38,9 @@ export default {
   }
   @include respond(phone) {
     grid-template-columns: 1fr;
+  }
+  &__item {
+    background-color: $white;
   }
 }
 </style>
