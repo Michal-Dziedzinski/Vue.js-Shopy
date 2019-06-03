@@ -1,5 +1,5 @@
 <template>
-  <img class="image" :src="src ? src : questionMark" :alt="alt">
+  <img :class="big ? 'image--big' : 'image'" :src="src ? src : questionMark" :alt="alt">
 </template>
 
 <script>
@@ -15,6 +15,7 @@ export default {
   props: {
     src: String,
     alt: String,
+    big: Boolean,
   },
 };
 </script>
@@ -24,5 +25,8 @@ export default {
 @import '@/assets/styles/main.scss';
 .image {
   height: 20rem;
+  &--big {
+    height: 50rem;
+  }
 }
 </style>

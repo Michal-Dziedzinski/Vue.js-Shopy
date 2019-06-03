@@ -2,8 +2,9 @@
   <section class="home">
     <Header/>
     <div class="home__content">
-      <Cart/>
-      <BeersList/>
+      <Cart :beers="beersToBuy"/>
+      <BeerDetails v-if="selectedBeer" :id="selectedBeer" @addedToCart="sendToCart"/>
+      <BeersList v-else/>
     </div>
   </section>
 </template>
@@ -11,14 +12,35 @@
 <script>
 import Header from '@/components/Header/Header.vue';
 import BeersList from '@/components/BeersList/BeersList.vue';
+import BeerDetails from '@/components/BeerDetails/BeerDetails.vue';
 import Cart from '@/components/Cart/Cart.vue';
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      selectedBeer: null,
+      beersToBuy: [],
+    };
+  },
+  watch: {
+    $route() {
+      this.selectedBeer = this.$router.currentRoute.params.id;
+    },
+  },
+  beforeMount() {
+    this.selectedBeer = this.$router.currentRoute.params.id;
+  },
+  methods: {
+    sendToCart(beer) {
+      this.beersToBuy.push(beer);
+    },
+  },
   components: {
     Header,
     BeersList,
     Cart,
+    BeerDetails,
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <div class="cart__item u-margin-bottom-small">
+    <div class="cart__element u-margin-bottom-small">
       <div class="cart__icon-group u-margin-bottom-small">
         <Icon iconName="contact-book"/>
         <p class="Paragraph--white Paragraph--big u-margin-left-small">Contact</p>
@@ -9,13 +9,19 @@
         class="Paragraph Paragraph--white"
       >Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eum debitis fuga repellat incidunt aliquid, doloribus velit voluptate quas reiciendis animi labore minima magnam impedit laborum aut. Repellat, nam eligendi.</p>
     </div>
-    <div class="cart__item u-margin-bottom-small">
+    <div class="cart__element u-margin-bottom-small">
       <div class="cart__icon-group u-margin-bottom-small">
         <Icon iconName="shopping-cart"/>
         <p class="Paragraph--white Paragraph--big u-margin-left-small">Cart</p>
       </div>
       <div class="cart__bucket">
-        <p class="Paragraph Paragraph--white">Cart is empty</p>
+        <p class="cart__info Paragraph Paragraph--white" v-if="beers.length === 0">Cart is empty</p>
+        <ul class="cart__list">
+          <li class="cart__item" v-for="beer in beers" :key="beer.id">
+            <span class="cart__price">{{beer.srm}}</span>
+            {{beer.name}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -28,6 +34,12 @@ export default {
   name: 'Cart',
   components: {
     Icon,
+  },
+  props: {
+    beers: {
+      type: Array,
+      required: false,
+    },
   },
 };
 </script>
@@ -45,11 +57,26 @@ export default {
   &__icon-group {
     @include centerAlign;
   }
+  &__info {
+    padding-top: 9rem;
+    text-align: center;
+  }
   &__bucket {
     min-height: 20rem;
     width: 100%;
     border: 0.2rem dashed $white;
-    @include center;
+    // @include center;
+  }
+  &__item {
+    color: $white;
+    font-size: 1.8rem;
+    background-color: $dark-blue;
+    width: calc(100% - 2rem);
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+  &__price {
+    color: $accent;
   }
 }
 </style>

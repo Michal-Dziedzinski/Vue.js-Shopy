@@ -1,11 +1,10 @@
 <template>
   <article class="list">
-    <div v-if="loading" class="list__loader">
-      <Loader/>
-    </div>
-    <div v-else class="list__items">
+    <div class="list__items">
       <div class="list__item" v-for="beer in beers" :key="beer.id">
-        <BeerItem :beer="beer"/>
+        <router-link :to="{ name: 'beerDetails', params:{id: beer.id} }">
+          <BeerItem :beer="beer"/>
+        </router-link>
       </div>
     </div>
     <infinite-loading @infinite="infiniteHandler">
@@ -28,14 +27,12 @@ export default {
     return {
       page: 2,
       beers: [],
-      loading: true,
     };
   },
   mounted() {
     // eslint-disable-next-line
     axios.get(`${API}?page=1&per_page=20`).then(response => {
       this.beers = response.data;
-      this.loading = false;
     });
   },
   methods: {
@@ -64,9 +61,6 @@ export default {
 .list {
   width: 100%;
   padding-left: 30rem;
-  &__loader {
-    @include center;
-  }
   &__items {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -84,6 +78,7 @@ export default {
   }
   &__item {
     background-color: $white;
+    cursor: pointer;
   }
 }
 </style>

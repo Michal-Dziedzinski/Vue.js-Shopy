@@ -24,6 +24,11 @@ export default new Router({
       name: 'contact',
       component: () => import('./views/Contact.vue'),
     },
+    {
+      path: '/details/:id',
+      name: 'beerDetails',
+      component: () => import('./views/Home.vue'),
+    },
     // {
     //   path: '/rooms/:id/show',
     //   name: 'ShowDetailsRoom',

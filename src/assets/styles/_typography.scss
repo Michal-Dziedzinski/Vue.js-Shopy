@@ -35,6 +35,9 @@
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: 700;
+  &--white {
+    color: $white;
+  }
 }
 
 .Paragraph {
