@@ -1,10 +1,10 @@
 <template>
   <section class="home">
-    <Header/>
+    <Header @searchedPhrase="setPhrase"/>
     <div class="home__content">
       <Cart :beers="beersToBuy" @removeItem="removeItem"/>
       <BeerDetails v-if="selectedBeer" :id="selectedBeer" @addedToCart="sendToCart"/>
-      <BeersList v-else/>
+      <BeersList :phraseToFilter="phraseToFilter" v-else/>
     </div>
   </section>
 </template>
@@ -21,6 +21,7 @@ export default {
     return {
       selectedBeer: null,
       beersToBuy: [],
+      phraseToFilter: '',
     };
   },
   watch: {
@@ -37,6 +38,9 @@ export default {
     },
     removeItem(index) {
       this.beersToBuy.splice(index, 1);
+    },
+    setPhrase(phrase) {
+      this.phraseToFilter = phrase;
     },
   },
   components: {

@@ -14,6 +14,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import BeerItem from '@/components/BeerItem/BeerItem.vue';
 import Loader from '@/components/UI/Loader/Loader.vue';
 import axios from 'axios';
@@ -27,26 +28,42 @@ export default {
     return {
       page: 2,
       beers: [],
+      allBeers: [],
     };
   },
   mounted() {
-    // eslint-disable-next-line
     axios.get(`${API}?page=1&per_page=20`).then(response => {
       this.beers = response.data;
+      this.allBeers = response.data;
     });
   },
   methods: {
     infiniteHandler($state) {
       axios.get(`${API}?page=${this.page}&per_page=20`).then(({ data }) => {
         if (data.length) {
-          this.page += 1;
           this.beers.push(...data);
+          this.allBeers = [...this.beers];
+          this.page += 1;
           $state.loaded();
         } else {
           $state.complete();
         }
       });
     },
+    filtered(query) {
+      this.beers = this.allBeers;
+      this.beers = this.beers.filter(beer =>
+        beer.name.toLowerCase().includes(query.toLowerCase())
+      );
+    },
+  },
+  watch: {
+    phraseToFilter(newVal) {
+      this.filtered(newVal);
+    },
+  },
+  props: {
+    phraseToFilter: String,
   },
   components: {
     BeerItem,

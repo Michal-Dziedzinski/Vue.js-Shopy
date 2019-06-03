@@ -31,7 +31,8 @@ export default {
 @import '@/assets/styles/main.scss';
 .item {
   background-color: $white;
-  padding: 1rem;
+  padding: 2.5rem 1rem;
+  color: $light-text;
   &__image {
     padding: 0.5rem 0;
     @include center;

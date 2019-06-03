@@ -1,25 +1,35 @@
 <template>
   <header class="header">
     <Logo logoText="Logo"/>
-    <nav>
-      <ul class="header__nav">
-        <NavItem to="/" isExact text="Home"/>
-        <NavItem to="/about" text="About"/>
-        <NavItem to="/contact" text="Contact"/>
-      </ul>
-    </nav>
+    <div class="header__panel">
+      <nav class="u-margin-right-small">
+        <ul class="header__nav">
+          <NavItem to="/" isExact text="Home"/>
+          <NavItem to="/about" text="About"/>
+          <NavItem to="/contact" text="Contact"/>
+        </ul>
+      </nav>
+      <Search @searchedPhrase="sendToFilter"/>
+    </div>
   </header>
 </template>
 
 <script>
 import Logo from '@/components/UI/Logo/Logo.vue';
 import NavItem from '@/components/UI/NavItem/NavItem.vue';
+import Search from '@/components/Search/Search.vue';
 
 export default {
   name: 'Header',
+  methods: {
+    sendToFilter(phrase) {
+      this.$emit('searchedPhrase', phrase);
+    },
+  },
   components: {
     Logo,
     NavItem,
+    Search,
   },
 };
 </script>
@@ -34,12 +44,16 @@ export default {
   left: 0;
   border-bottom: 0.2rem solid $gray;
   width: 100%;
-  height: 5rem;
+  height: 7rem;
+  padding-right: 5rem;
   @include centerAlign;
   background-color: $background;
   &__nav {
     display: flex;
     font-size: $default-font-size;
+  }
+  &__panel {
+    display: flex;
   }
 }
 </style>

@@ -60,7 +60,7 @@ export default {
       text-decoration: none;
       text-transform: uppercase;
       display: block;
-      padding: 1.5rem 3rem;
+      padding: 2.5rem 3rem;
       position: relative;
       z-index: 10;
 
