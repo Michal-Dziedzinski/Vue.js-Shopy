@@ -17,7 +17,6 @@
 <script>
 import BeerItem from '@/components/BeerItem/BeerItem.vue';
 import Loader from '@/components/UI/Loader/Loader.vue';
-import Loader1 from '@/components/UI/Loader/Loader.1.vue';
 import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
 
@@ -56,7 +55,6 @@ export default {
     BeerItem,
     InfiniteLoading,
     Loader,
-    Loader1,
   },
 };
 </script>
