@@ -19,6 +19,7 @@ import BeerItem from '@/components/BeerItem/BeerItem.vue';
 import Loader from '@/components/UI/Loader/Loader.vue';
 import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
+import { mapMutations, mapActions } from 'vuex';
 
 const API = 'https://api.punkapi.com/v2/beers';
 
@@ -32,10 +33,11 @@ export default {
     };
   },
   mounted() {
-    axios.get(`${API}?page=1&per_page=20`).then(response => {
-      this.beers = response.data;
-      this.allBeers = response.data;
-    });
+    this.fetchItems({ apiRequest: `${API}?page=1&per_page=20` });
+    // axios.get(`${API}?page=1&per_page=20`).then(response => {
+    //   this.beers = response.data;
+    //   this.allBeers = response.data;
+    // });
   },
   methods: {
     infiniteHandler($state) {
@@ -70,6 +72,7 @@ export default {
     InfiniteLoading,
     Loader,
   },
+  ...mapActions(['fetchItems']),
 };
 </script>
 

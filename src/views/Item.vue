@@ -3,14 +3,14 @@
     <Header @searchedPhrase="setPhrase"/>
     <div class="home__content">
       <Cart :beers="beersToBuy" @removeItem="removeItem"/>
-      <BeersList :phraseToFilter="phraseToFilter"/>
+      <BeerDetails :id="selectedBeer" @addedToCart="sendToCart"/>
     </div>
   </section>
 </template>
 
 <script>
 import Header from '@/components/Header/Header.vue';
-import BeersList from '@/components/BeersList/BeersList.vue';
+import BeerDetails from '@/components/BeerDetails/BeerDetails.vue';
 import Cart from '@/components/Cart/Cart.vue';
 
 export default {
@@ -21,6 +21,14 @@ export default {
       beersToBuy: [],
       phraseToFilter: '',
     };
+  },
+  watch: {
+    $route() {
+      this.selectedBeer = this.$router.currentRoute.params.id;
+    },
+  },
+  beforeMount() {
+    this.selectedBeer = this.$router.currentRoute.params.id;
   },
   methods: {
     sendToCart(beer) {
@@ -35,8 +43,8 @@ export default {
   },
   components: {
     Header,
-    BeersList,
     Cart,
+    BeerDetails,
   },
 };
 </script>
