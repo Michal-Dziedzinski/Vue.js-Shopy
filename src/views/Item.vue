@@ -2,8 +2,8 @@
   <section class="home">
     <Header @searchedPhrase="setPhrase"/>
     <div class="home__content">
-      <Cart :beers="beersToBuy" @removeItem="removeItem"/>
-      <BeerDetails :id="selectedBeer" @addedToCart="sendToCart"/>
+      <Cart/>
+      <BeerDetails :id="selectedBeer"/>
     </div>
   </section>
 </template>
@@ -31,12 +31,12 @@ export default {
     this.selectedBeer = this.$router.currentRoute.params.id;
   },
   methods: {
-    sendToCart(beer) {
-      this.beersToBuy.push(beer);
-    },
-    removeItem(index) {
-      this.beersToBuy.splice(index, 1);
-    },
+    // sendToCart(beer) {
+    //   this.beersToBuy.push(beer);
+    // },
+    // removeItem(index) {
+    //   this.beersToBuy.splice(index, 1);
+    // },
     setPhrase(phrase) {
       this.phraseToFilter = phrase;
     },

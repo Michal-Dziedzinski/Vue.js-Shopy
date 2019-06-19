@@ -1,5 +1,8 @@
 export default {
-  items(state) {
-    return state.items;
-  },
+  // getItems(state) {
+  //   return state.items;
+  // },
+  // getPage(state) {
+  //   return state.page;
+  // },
 };

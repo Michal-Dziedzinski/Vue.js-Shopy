@@ -22,7 +22,7 @@
           <li class="cart__item" v-for="(beer, index) in beers" :key="beer.id">
             <span class="cart__price">{{beer.abv}}</span>
             {{beer.name}}
-            <div class="cart__delete" @click="$emit('removeItem', index)"></div>
+            <div class="cart__delete" @click="removeFromCart(index)"></div>
           </li>
         </ul>
       </div>
@@ -32,18 +32,29 @@
 
 <script>
 import Icon from '@/components/UI/Icon/Icon.vue';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'Cart',
   components: {
     Icon,
   },
-  props: {
-    beers: {
-      type: Array,
-      required: false,
+  computed: mapState({
+    beers: state => state.cart,
+  }),
+  methods: {
+    removeFromCart(index) {
+      // this.$emit('addedToCart', this.beer);
+      this.REMOVE_ITEM_FROM_CART(index);
     },
+    ...mapMutations(['REMOVE_ITEM_FROM_CART']),
   },
+  // props: {
+  //   beers: {
+  //     type: Array,
+  //     required: false,
+  //   },
+  // },
 };
 </script>
 

@@ -2,7 +2,7 @@
   <section class="home">
     <Header @searchedPhrase="setPhrase"/>
     <div class="home__content">
-      <Cart :beers="beersToBuy" @removeItem="removeItem"/>
+      <Cart />
       <BeersList :phraseToFilter="phraseToFilter"/>
     </div>
   </section>
@@ -23,12 +23,12 @@ export default {
     };
   },
   methods: {
-    sendToCart(beer) {
-      this.beersToBuy.push(beer);
-    },
-    removeItem(index) {
-      this.beersToBuy.splice(index, 1);
-    },
+    // sendToCart(beer) {
+    //   this.beersToBuy.push(beer);
+    // },
+    // removeItem(index) {
+    //   this.beersToBuy.splice(index, 1);
+    // },
     setPhrase(phrase) {
       this.phraseToFilter = phrase;
     },

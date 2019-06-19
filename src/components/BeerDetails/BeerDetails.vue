@@ -28,6 +28,7 @@
 import Loader from '@/components/UI/Loader/Loader.vue';
 import BeerImage from '@/components/UI/BeerImage/BeerImage.vue';
 import Button from '@/components/UI/Button/Button.vue';
+import { mapMutations } from 'vuex';
 import axios from 'axios';
 
 const API = 'https://api.punkapi.com/v2/beers';
@@ -57,8 +58,10 @@ export default {
   methods: {
     addToCart() {
       this.isClicked = true;
-      this.$emit('addedToCart', this.beer);
+      // this.$emit('addedToCart', this.beer);
+      this.ADD_ITEM_TO_CART(this.beer);
     },
+    ...mapMutations(['ADD_ITEM_TO_CART']),
   },
   components: {
     Loader,

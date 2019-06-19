@@ -1,9 +1,9 @@
 <template>
   <article class="list">
     <div class="list__items">
-      <div class="list__item" v-for="beer in beers" :key="beer.id">
-        <router-link :to="{ name: 'beerDetails', params:{id: beer.id} }">
-          <BeerItem :beer="beer"/>
+      <div class="list__item" v-for="item in allItems" :key="item.id">
+        <router-link :to="{ name: 'beerDetails', params:{id: item.id} }">
+          <BeerItem :beer="item" v-if="isHide(item.id)"/>
         </router-link>
       </div>
     </div>
@@ -19,7 +19,7 @@ import BeerItem from '@/components/BeerItem/BeerItem.vue';
 import Loader from '@/components/UI/Loader/Loader.vue';
 import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 
 const API = 'https://api.punkapi.com/v2/beers';
 
@@ -27,31 +27,28 @@ export default {
   name: 'BeersList',
   data() {
     return {
-      page: 2,
-      beers: [],
+      // page: 2,
+      // beers: this.items,
       allBeers: [],
     };
   },
   computed: {
-    items() {
-      return this.$store.getters.items;
-    },
+    ...mapState(['items', 'page', 'allItems', 'cart', 'cartItemsIds']),
   },
   mounted() {
     this.fetchItems({ apiRequest: `${API}?page=1&per_page=20` });
-    // axios.get(`${API}?page=1&per_page=20`).then(response => {
-    //   this.beers = response.data;
-    //   this.allBeers = response.data;
-    // });
+  },
+  beforeDestroy() {
+    // console.log('destroy');
+    // this.REMOVE_ITEM_FROM_LIST();
   },
   methods: {
-    infiniteHandler($state) {
-      this.fetchItems({ apiRequest: `${API}?page=${this.page}&per_page=20` });
-      axios.get(`${API}?page=${this.page}&per_page=20`).then(({ data }) => {
-        if (data.length) {
-          this.beers.push(...data);
-          this.allBeers = [...this.beers];
-          this.page += 1;
+    async infiniteHandler($state) {
+      console.log(this.page);
+      await this.fetchItems({
+        apiRequest: `${API}?page=${this.page}&per_page=20`,
+      }).then(() => {
+        if (this.items.length) {
           $state.loaded();
         } else {
           $state.complete();
@@ -60,11 +57,15 @@ export default {
     },
     filtered(query) {
       this.beers = this.allBeers;
-      this.beers = this.beers.filter(beer =>
+      this.beers = this.beers.filter((beer) =>
         beer.name.toLowerCase().includes(query.toLowerCase())
       );
     },
+    isHide(id) {
+      return this.cartItemsIds.find(id);
+    },
     ...mapActions(['fetchItems']),
+    ...mapMutations(['REMOVE_ITEM_FROM_LIST']),
   },
   watch: {
     phraseToFilter(newVal) {

@@ -9,6 +9,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     items: [],
+    page: 2,
+    allItems: [],
+    cart: [],
+    cartItemsIds: [],
   },
   getters,
   mutations,
