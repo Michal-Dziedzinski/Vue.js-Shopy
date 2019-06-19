@@ -32,6 +32,11 @@ export default {
       allBeers: [],
     };
   },
+  computed: {
+    items() {
+      return this.$store.getters.items;
+    },
+  },
   mounted() {
     this.fetchItems({ apiRequest: `${API}?page=1&per_page=20` });
     // axios.get(`${API}?page=1&per_page=20`).then(response => {
@@ -41,6 +46,7 @@ export default {
   },
   methods: {
     infiniteHandler($state) {
+      this.fetchItems({ apiRequest: `${API}?page=${this.page}&per_page=20` });
       axios.get(`${API}?page=${this.page}&per_page=20`).then(({ data }) => {
         if (data.length) {
           this.beers.push(...data);
@@ -58,6 +64,7 @@ export default {
         beer.name.toLowerCase().includes(query.toLowerCase())
       );
     },
+    ...mapActions(['fetchItems']),
   },
   watch: {
     phraseToFilter(newVal) {
@@ -72,7 +79,6 @@ export default {
     InfiniteLoading,
     Loader,
   },
-  ...mapActions(['fetchItems']),
 };
 </script>
 

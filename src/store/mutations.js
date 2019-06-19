@@ -1,6 +1,7 @@
 export default {
   ADD_ITEM_TO_LIST(state, payload) {
-    console.log(state, payload.apiRequest);
+    state.items.push(payload);
+    console.log(state);
   },
   ADD_ITEM_TO_CART(state, payload) {
     console.log(state, payload);
