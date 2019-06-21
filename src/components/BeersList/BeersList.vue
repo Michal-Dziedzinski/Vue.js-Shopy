@@ -1,15 +1,15 @@
 <template>
   <article class="list">
     <div class="list__items">
-      <div class="list__item" v-for="item in allItems" :key="item.id">
+      <div class="list__item" v-for="item in availableItems" :key="item.id">
         <router-link :to="{ name: 'beerDetails', params:{id: item.id} }">
-          <BeerItem :beer="item" v-if="isHide(item.id)"/>
+          <BeerItem :beer="item"/>
         </router-link>
       </div>
     </div>
-    <infinite-loading @infinite="infiniteHandler">
+    <InfiniteLoading @infinite="infiniteHandler">
       <Loader slot="spinner"/>
-    </infinite-loading>
+    </InfiniteLoading>
   </article>
 </template>
 
@@ -27,12 +27,13 @@ export default {
   name: 'BeersList',
   data() {
     return {
-      // page: 2,
-      // beers: this.items,
       allBeers: [],
     };
   },
   computed: {
+    availableItems() {
+      this.allItems.filter((item) => this.cartItemsIds.includes(item.id));
+    },
     ...mapState(['items', 'page', 'allItems', 'cart', 'cartItemsIds']),
   },
   mounted() {
@@ -40,11 +41,10 @@ export default {
   },
   beforeDestroy() {
     // console.log('destroy');
-    // this.REMOVE_ITEM_FROM_LIST();
+    this.REMOVE_ITEM_FROM_LIST();
   },
   methods: {
     async infiniteHandler($state) {
-      console.log(this.page);
       await this.fetchItems({
         apiRequest: `${API}?page=${this.page}&per_page=20`,
       }).then(() => {
@@ -62,7 +62,7 @@ export default {
       );
     },
     isHide(id) {
-      return this.cartItemsIds.find(id);
+      return !this.cartItemsIds.includes(id);
     },
     ...mapActions(['fetchItems']),
     ...mapMutations(['REMOVE_ITEM_FROM_LIST']),
@@ -92,7 +92,6 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
-    // padding-left: 30rem;
     @include respond(big-desktop) {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
