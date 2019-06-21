@@ -1,9 +1,9 @@
 <template>
-  <section class="wrapper">
-    <Header/>
+  <section>
+    <AppHeader/>
     <article class="about">
       <div class="about__icon u-margin-bottom-medium">
-        <Icon isColor iconName="contact-book"/>
+        <AppIcon isColor iconName="contact-book"/>
       </div>
       <h2 class="HeadingSecondary u-margin-bottom-medium">about</h2>
       <p
@@ -13,25 +13,20 @@
   </section>
 </template>
 <script>
-import Header from '@/components/Header/Header.vue';
-import Icon from '@/components/UI/Icon/Icon.vue';
+import AppHeader from '@/components/layout/AppHeader.vue';
+import AppIcon from '@/components/ui/AppIcon.vue';
 
 export default {
-  name: 'About',
+  name: 'AboutPage',
   components: {
-    Header,
-    Icon,
+    AppHeader,
+    AppIcon,
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
-.wrapper {
-  display: flex;
-  height: 100vh;
-  @include center;
-}
 .about {
   background-color: $white;
   padding: 10rem;
@@ -39,7 +34,6 @@ export default {
   flex-direction: column;
   box-shadow: 0 1rem 4rem $shadow-light;
   transition: box-shadow 0.3s;
-  width: 50%;
   &:hover {
     box-shadow: 0 1rem 4rem $shadow-middle;
   }

@@ -1,13 +1,13 @@
 <template>
   <div
     :class="isColor ? 'icon icon--color' : 'icon'"
-    :style="{'-webkit-mask': 'url('+ require(`../../../assets/icons/${iconName}.svg`)+')', '-webkit-mask-size': 'cover'}"
+    :style="{'-webkit-mask': 'url('+ require(`@/assets/icons/${iconName}.svg`)+')', '-webkit-mask-size': 'cover'}"
   ></div>
 </template>
 
 <script>
 export default {
-  name: 'Icon',
+  name: 'AppIcon',
   props: {
     isColor: {
       type: Boolean,

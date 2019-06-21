@@ -1,11 +1,11 @@
 <template>
   <article class="details">
     <div v-if="loading" class="details__loader">
-      <Loader/>
+      <AppLoader/>
     </div>
     <div v-else class="details__content">
       <div class="details__image">
-        <BeerImage :src="beer.image_url" :alt="beer.name" big/>
+        <ItemImage :src="beer.image_url" :alt="beer.name" big/>
       </div>
       <div class="details__description">
         <div class="details__text">
@@ -13,7 +13,7 @@
           <p class="Paragraph Paragraph--white">{{beer.description}}</p>
         </div>
         <div class="details__button u-margin-left-small">
-          <Button
+          <AppButton
             :text="isClicked ? 'Added' : 'Add to Card'"
             :isOpacity="isClicked"
             @clicked="addToCart"
@@ -25,16 +25,16 @@
 </template>
 
 <script>
-import Loader from '@/components/UI/Loader/Loader.vue';
-import BeerImage from '@/components/UI/BeerImage/BeerImage.vue';
-import Button from '@/components/UI/Button/Button.vue';
+import AppLoader from '@/components/ui/AppLoader.vue';
+import ItemImage from '@/components/ui/ItemImage.vue';
+import AppButton from '@/components/ui/AppButton.vue';
 import { mapMutations } from 'vuex';
 import axios from 'axios';
 
 const API = 'https://api.punkapi.com/v2/beers';
 
 export default {
-  name: 'BeerDetails',
+  name: 'ItemDetails',
   data() {
     return {
       beer: null,
@@ -63,9 +63,9 @@ export default {
     ...mapMutations(['ADD_ITEM_TO_CART']),
   },
   components: {
-    Loader,
-    BeerImage,
-    Button,
+    AppLoader,
+    ItemImage,
+    AppButton,
   },
 };
 </script>

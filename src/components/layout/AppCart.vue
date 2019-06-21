@@ -2,7 +2,7 @@
   <div class="cart">
     <div class="cart__element u-margin-bottom-small">
       <div class="cart__icon-group u-margin-bottom-small">
-        <Icon iconName="contact-book"/>
+        <AppIcon iconName="contact-book"/>
         <p class="Paragraph--white Paragraph--big u-margin-left-small">Contact</p>
       </div>
       <p
@@ -11,7 +11,7 @@
     </div>
     <div class="cart__element u-margin-bottom-small">
       <div class="cart__icon-group u-margin-bottom-small">
-        <Icon iconName="shopping-cart"/>
+        <AppIcon iconName="shopping-cart"/>
         <p
           class="Paragraph--white Paragraph--big u-margin-left-small"
         >Cart {{beers.length > 0 ? `(${beers.length})` : null}}</p>
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import Icon from '@/components/UI/Icon/Icon.vue';
+import AppIcon from '@/components/ui/AppIcon.vue';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-  name: 'Cart',
+  name: 'AppCart',
   components: {
-    Icon,
+    AppIcon,
   },
   computed: mapState({
     // eslint-disable-next-line

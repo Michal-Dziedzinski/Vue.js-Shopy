@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <Logo logoText="Logo"/>
+    <AppLogo logoText="Logo"/>
     <div class="header__panel">
       <nav class="u-margin-right-small">
         <ul class="header__nav">
@@ -9,22 +9,20 @@
           <NavItem to="/contact" text="Contact"/>
         </ul>
       </nav>
-      <Search/>
+      <slot></slot>
     </div>
   </header>
 </template>
 
 <script>
-import Logo from '@/components/UI/Logo/Logo.vue';
-import NavItem from '@/components/UI/NavItem/NavItem.vue';
-import Search from '@/components/Search/Search.vue';
+import AppLogo from '@/components/ui/AppLogo.vue';
+import NavItem from '@/components/ui/NavItem.vue';
 
 export default {
-  name: 'Header',
+  name: 'AppHeader',
   components: {
-    Logo,
+    AppLogo,
     NavItem,
-    Search,
   },
 };
 </script>

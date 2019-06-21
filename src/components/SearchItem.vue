@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <div class="search__icon">
-      <Icon iconName="magnifying-glass" isColor/>
+      <AppIcon iconName="magnifying-glass" isColor/>
     </div>
     <div class="search__group u-margin-left-small u-margin-top-small">
       <input
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import Icon from '@/components/UI/Icon/Icon.vue';
+import AppIcon from '@/components/ui/AppIcon.vue';
 import { mapMutations } from 'vuex';
 
 export default {
-  name: 'Search',
+  name: 'SearchItem',
   data() {
     return {
       searchValue: '',
@@ -36,7 +36,7 @@ export default {
     ...mapMutations(['FILTER_ITEMS_FROM_LIST']),
   },
   components: {
-    Icon,
+    AppIcon,
   },
 };
 </script>

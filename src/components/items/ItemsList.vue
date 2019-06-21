@@ -2,27 +2,27 @@
   <article class="list">
     <div class="list__items">
       <div class="list__item" v-for="item in availableItems" :key="item.id">
-        <router-link :to="{ name: 'beerDetails', params:{id: item.id} }">
-          <BeerItem :beer="item"/>
+        <router-link :to="{ name: 'itemPage', params:{id: item.id} }">
+          <ItemElement :beer="item"/>
         </router-link>
       </div>
     </div>
     <InfiniteLoading @infinite="infiniteHandler">
-      <Loader slot="spinner"/>
+      <AppLoader slot="spinner"/>
     </InfiniteLoading>
   </article>
 </template>
 
 <script>
-import BeerItem from '@/components/BeerItem/BeerItem.vue';
-import Loader from '@/components/UI/Loader/Loader.vue';
+import ItemElement from '@/components/items/item/ItemElement.vue';
+import AppLoader from '@/components/ui/AppLoader.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 import { mapMutations, mapActions, mapState } from 'vuex';
 
 const API = 'https://api.punkapi.com/v2/beers';
 
 export default {
-  name: 'BeersList',
+  name: 'ItemsList',
   computed: {
     availableItems() {
       return this.allItems.filter(
@@ -54,9 +54,9 @@ export default {
     ...mapMutations(['REMOVE_ITEMS_FROM_LIST']),
   },
   components: {
-    BeerItem,
+    ItemElement,
     InfiniteLoading,
-    Loader,
+    AppLoader,
   },
 };
 </script>

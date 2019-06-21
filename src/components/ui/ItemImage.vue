@@ -6,7 +6,7 @@
 import questionMark from '@/assets/images/questionMark.png';
 
 export default {
-  name: 'BeerImage',
+  name: 'ItemImage',
   data() {
     return {
       questionMark,

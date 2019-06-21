@@ -10,22 +10,27 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/Home.vue'),
+      component: () => import('@/pages/SalesPages/HomePage.vue'),
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('./views/About.vue'),
+      component: () => import('@/pages/OthersPages/AboutPage.vue'),
     },
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('./views/Contact.vue'),
+      component: () => import('@/pages/OthersPages/ContactPage.vue'),
     },
     {
       path: '/details/:id',
-      name: 'beerDetails',
-      component: () => import('./views/Item.vue'),
+      name: 'itemPage',
+      component: () => import('@/pages/SalesPages/ItemPage.vue'),
+    },
+    {
+      path: '*',
+      name: 'notFoundPage',
+      component: () => import('@/pages/OthersPages/NotFoundPage.vue'),
     },
   ],
 });
