@@ -9,7 +9,7 @@
           <NavItem to="/contact" text="Contact"/>
         </ul>
       </nav>
-      <Search @searchedPhrase="sendToFilter"/>
+      <Search/>
     </div>
   </header>
 </template>
@@ -21,11 +21,6 @@ import Search from '@/components/Search/Search.vue';
 
 export default {
   name: 'Header',
-  methods: {
-    sendToFilter(phrase) {
-      this.$emit('searchedPhrase', phrase);
-    },
-  },
   components: {
     Logo,
     NavItem,

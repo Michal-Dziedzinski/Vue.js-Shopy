@@ -85,7 +85,6 @@ export default {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    // display: flex;
     position: relative;
     &:hover .cart__delete {
       transform: translateX(0);

@@ -29,7 +29,6 @@ export default {
   width: 4rem;
   background-color: $white;
   background-size: cover;
-  // mask: url('../../../assets/icons/contact-book.svg');
   &--color {
     background-color: $light-blue;
   }

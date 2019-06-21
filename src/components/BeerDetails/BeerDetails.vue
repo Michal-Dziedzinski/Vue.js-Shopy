@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line
-    axios.get(`${API}/${this.id}`).then(response => {
+    axios.get(`${API}/${this.id}`).then((response) => {
       [this.beer] = response.data;
       this.loading = false;
     });
@@ -58,7 +58,6 @@ export default {
   methods: {
     addToCart() {
       this.isClicked = true;
-      // this.$emit('addedToCart', this.beer);
       this.ADD_ITEM_TO_CART(this.beer);
     },
     ...mapMutations(['ADD_ITEM_TO_CART']),

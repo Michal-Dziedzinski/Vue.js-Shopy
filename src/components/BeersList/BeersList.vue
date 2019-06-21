@@ -53,14 +53,6 @@ export default {
     ...mapActions(['fetchItems']),
     ...mapMutations(['REMOVE_ITEMS_FROM_LIST']),
   },
-  watch: {
-    phraseToFilter(newVal) {
-      this.filtered(newVal);
-    },
-  },
-  props: {
-    phraseToFilter: String,
-  },
   components: {
     BeerItem,
     InfiniteLoading,
