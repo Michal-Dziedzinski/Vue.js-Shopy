@@ -19,6 +19,7 @@
 
 <script>
 import Icon from '@/components/UI/Icon/Icon.vue';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'Search',
@@ -30,8 +31,9 @@ export default {
   methods: {
     // eslint-disable-next-line
     handleInput() {
-      this.$emit('searchedPhrase', this.searchValue);
+      this.FILTER_ITEMS_FROM_LIST(this.searchValue);
     },
+    ...mapMutations(['FILTER_ITEMS_FROM_LIST']),
   },
   components: {
     Icon,

@@ -14,10 +14,8 @@
 </template>
 
 <script>
-/* eslint-disable */
 import BeerItem from '@/components/BeerItem/BeerItem.vue';
 import Loader from '@/components/UI/Loader/Loader.vue';
-import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
 import { mapMutations, mapActions, mapState } from 'vuex';
 
@@ -25,14 +23,10 @@ const API = 'https://api.punkapi.com/v2/beers';
 
 export default {
   name: 'BeersList',
-  data() {
-    return {
-      allBeers: [],
-    };
-  },
   computed: {
     availableItems() {
       return this.allItems.filter(
+        // eslint-disable-next-line
         (item) => !this.cartItemsIds.includes(item.id)
       );
     },
@@ -55,15 +49,6 @@ export default {
           $state.complete();
         }
       });
-    },
-    filtered(query) {
-      this.beers = this.allBeers;
-      this.beers = this.beers.filter((beer) =>
-        beer.name.toLowerCase().includes(query.toLowerCase())
-      );
-    },
-    isHide(id) {
-      return !this.cartItemsIds.includes(id);
     },
     ...mapActions(['fetchItems']),
     ...mapMutations(['REMOVE_ITEMS_FROM_LIST']),

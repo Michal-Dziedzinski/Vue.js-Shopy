@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     items: [],
     allItems: [],
+    allItemsBuffer: [],
     page: 2,
     cart: [],
     itemsIds: [],

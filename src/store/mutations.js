@@ -1,27 +1,29 @@
-/* eslint-disable no-plusplus */
+/* eslint-disable */
 export default {
   ADD_ITEM_TO_LIST(state, payload) {
-    // eslint-disable-next-line no-param-reassign
     state.allItems = [...state.allItems, ...payload];
+    state.allItemsBuffer = [...state.allItemsBuffer, ...payload];
     const newIds = [];
 
     payload.forEach((element) => {
       newIds.push(element.id);
     });
-    // eslint-disable-next-line no-param-reassign
     state.itemsIds = [...state.cartItemsIds, ...newIds];
-    // eslint-disable-next-line no-param-reassign
     state.items = [...payload];
-    // eslint-disable-next-line no-param-reassign
     state.page++;
   },
   REMOVE_ITEMS_FROM_LIST(state) {
-    // eslint-disable-next-line no-param-reassign
     state.allItems = [];
+    state.allItemsBuffer = [];
+  },
+  FILTER_ITEMS_FROM_LIST(state, payload) {
+    state.allItems = state.allItemsBuffer;
+    state.allItems = state.allItems.filter((item) =>
+      item.name.toLowerCase().includes(payload.toLowerCase())
+    );
   },
   ADD_ITEM_TO_CART({ cart, cartItemsIds }, payload) {
     cart.push(payload);
-    // eslint-disable-next-line no-param-reassign
     cartItemsIds.push(payload.id);
   },
   REMOVE_ITEM_FROM_CART({ cart, cartItemsIds }, payload) {
