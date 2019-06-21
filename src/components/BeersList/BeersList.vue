@@ -32,7 +32,9 @@ export default {
   },
   computed: {
     availableItems() {
-      this.allItems.filter((item) => this.cartItemsIds.includes(item.id));
+      return this.allItems.filter(
+        (item) => !this.cartItemsIds.includes(item.id)
+      );
     },
     ...mapState(['items', 'page', 'allItems', 'cart', 'cartItemsIds']),
   },
@@ -40,8 +42,7 @@ export default {
     this.fetchItems({ apiRequest: `${API}?page=1&per_page=20` });
   },
   beforeDestroy() {
-    // console.log('destroy');
-    this.REMOVE_ITEM_FROM_LIST();
+    this.REMOVE_ITEMS_FROM_LIST();
   },
   methods: {
     async infiniteHandler($state) {
@@ -65,7 +66,7 @@ export default {
       return !this.cartItemsIds.includes(id);
     },
     ...mapActions(['fetchItems']),
-    ...mapMutations(['REMOVE_ITEM_FROM_LIST']),
+    ...mapMutations(['REMOVE_ITEMS_FROM_LIST']),
   },
   watch: {
     phraseToFilter(newVal) {

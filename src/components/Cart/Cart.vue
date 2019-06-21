@@ -40,21 +40,15 @@ export default {
     Icon,
   },
   computed: mapState({
-    beers: state => state.cart,
+    // eslint-disable-next-line
+    beers: (state) => state.cart,
   }),
   methods: {
     removeFromCart(index) {
-      // this.$emit('addedToCart', this.beer);
       this.REMOVE_ITEM_FROM_CART(index);
     },
     ...mapMutations(['REMOVE_ITEM_FROM_CART']),
   },
-  // props: {
-  //   beers: {
-  //     type: Array,
-  //     required: false,
-  //   },
-  // },
 };
 </script>
 
