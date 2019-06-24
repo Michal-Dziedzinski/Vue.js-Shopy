@@ -3,7 +3,7 @@
     <AppHeader/>
     <main class="item__content">
       <AppCart/>
-      <ItemDetails :id="selectedBeer"/>
+      <ItemDetails :item="item" :loading="loading"/>
     </main>
   </div>
 </template>
@@ -12,25 +12,28 @@
 import AppHeader from '@/components/layout/AppHeader.vue';
 import ItemDetails from '@/components/items/item/ItemDetails.vue';
 import AppCart from '@/components/layout/AppCart.vue';
+import axios from 'axios';
+
+const API = 'https://api.punkapi.com/v2/beers';
 
 export default {
   name: 'ItemPage',
   data() {
     return {
-      selectedBeer: null,
+      item: null,
+      loading: true,
     };
   },
-  watch: {
-    $route: {
-      handler: 'onUrlParamsChange',
-      immediate: true,
-    },
+  props: {
+    // FIXME:
+    id: [String, Number],
   },
-  methods: {
-    onUrlParamsChange() {
-      // FIXME:
-      this.selectedBeer = this.$router.currentRoute.params.id;
-    },
+  mounted() {
+    // eslint-disable-next-line
+    axios.get(`${API}/${this.id}`).then((response) => {
+      [this.item] = response.data;
+      this.loading = false;
+    });
   },
   components: {
     AppHeader,

@@ -3,7 +3,7 @@
     <div class="list__items">
       <div class="list__item" v-for="item in availableItems" :key="item.id">
         <router-link :to="{ name: 'itemPage', params:{id: item.id} }">
-          <ItemElement :beer="item"/>
+          <ItemElement :item="item"/>
         </router-link>
       </div>
     </div>

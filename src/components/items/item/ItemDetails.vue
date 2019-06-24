@@ -5,12 +5,12 @@
     </div>
     <div v-else class="details__content">
       <div class="details__image">
-        <ItemImage :src="beer.image_url" :alt="beer.name" big/>
+        <ItemImage :src="item.image_url" :alt="item.name" big/>
       </div>
       <div class="details__description">
         <div class="details__text">
-          <h2 class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small">{{beer.name}}</h2>
-          <p class="Paragraph Paragraph--white">{{beer.description}}</p>
+          <h2 class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small">{{item.name}}</h2>
+          <p class="Paragraph Paragraph--white">{{item.description}}</p>
         </div>
         <div class="details__button u-margin-left-small">
           <AppButton
@@ -29,36 +29,27 @@ import AppLoader from '@/components/ui/AppLoader.vue';
 import ItemImage from '@/components/ui/ItemImage.vue';
 import AppButton from '@/components/ui/AppButton.vue';
 import { mapMutations } from 'vuex';
-import axios from 'axios';
-
-const API = 'https://api.punkapi.com/v2/beers';
 
 export default {
   name: 'ItemDetails',
   data() {
     return {
-      beer: null,
-      loading: true,
       isClicked: false,
     };
   },
-  mounted() {
-    // eslint-disable-next-line
-    axios.get(`${API}/${this.id}`).then((response) => {
-      [this.beer] = response.data;
-      this.loading = false;
-    });
-  },
   props: {
-    id: {
-      type: [String, Number],
+    item: {
+      type: Object,
+    },
+    loading: {
+      type: Boolean,
       required: true,
     },
   },
   methods: {
     addToCart() {
       this.isClicked = true;
-      this.ADD_ITEM_TO_CART(this.beer);
+      this.ADD_ITEM_TO_CART(this.item);
     },
     ...mapMutations(['ADD_ITEM_TO_CART']),
   },

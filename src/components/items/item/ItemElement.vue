@@ -1,11 +1,11 @@
 <template>
   <div class="item">
     <div class="item__image">
-      <ItemImage :src="beer.image_url" :alt="beer.name"/>
+      <ItemImage :src="item.image_url" :alt="item.name"/>
     </div>
     <div class="u-margin-top-small">
-      <p class="Paragraph Paragraph--big u-margin-bottom-small">{{beer.name}}</p>
-      <p class="Paragraph">{{beer.tagline}}</p>
+      <p class="Paragraph Paragraph--big u-margin-bottom-small">{{item.name}}</p>
+      <p class="Paragraph">{{item.tagline}}</p>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ import ItemImage from '@/components/ui/ItemImage.vue';
 export default {
   name: 'ItemElement',
   props: {
-    beer: {
+    item: {
       type: Object,
       required: true,
     },

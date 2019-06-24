@@ -14,14 +14,14 @@
         <AppIcon iconName="shopping-cart"/>
         <p
           class="Paragraph--white Paragraph--big u-margin-left-small"
-        >Cart {{beers.length > 0 ? `(${beers.length})` : null}}</p>
+        >Cart {{items.length > 0 ? `(${items.length})` : null}}</p>
       </div>
       <div class="cart__bucket">
-        <p class="cart__info Paragraph Paragraph--white" v-if="beers.length === 0">Cart is empty</p>
+        <p class="cart__info Paragraph Paragraph--white" v-if="items.length === 0">Cart is empty</p>
         <ul class="cart__list">
-          <li class="cart__item" v-for="(beer, index) in beers" :key="beer.id">
-            <span class="cart__price">{{beer.abv}}</span>
-            {{beer.name}}
+          <li class="cart__item" v-for="(item, index) in items" :key="item.id">
+            <span class="cart__price">{{item.abv}}</span>
+            {{item.name}}
             <div class="cart__delete" @click="removeFromCart(index)"></div>
           </li>
         </ul>
@@ -41,7 +41,7 @@ export default {
   },
   computed: mapState({
     // eslint-disable-next-line
-    beers: (state) => state.cart,
+    items: (state) => state.cart,
   }),
   methods: {
     removeFromCart(index) {

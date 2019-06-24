@@ -1,5 +1,4 @@
 import Vue from 'vue';
-// import { mapMutations } from 'vuex';
 import App from './App.vue';
 import router from './router';
 import store from './store/store';
@@ -12,8 +11,6 @@ new Vue({
   beforeCreate() {
     this.$store.commit('INITIALIZE_STORE');
   },
-  // methods: {
-  //   ...mapMutations(['INITIALIZE_STORE']),
-  // },
-  render: h => h(App),
+  // eslint-disable-next-line
+  render: (h) => h(App),
 }).$mount('#app');

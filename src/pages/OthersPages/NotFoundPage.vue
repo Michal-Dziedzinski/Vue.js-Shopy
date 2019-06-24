@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <AppHeader/>
     <h2 class="HeadingSecondary u-margin-bottom-medium">Page Not Found</h2>
   </section>
@@ -17,4 +17,8 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
+.container {
+  @include center;
+  min-height: 100vh;
+}
 </style>
