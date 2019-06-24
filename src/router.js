@@ -26,6 +26,7 @@ export default new Router({
       path: '/details/:id',
       name: 'itemPage',
       component: () => import('@/pages/SalesPages/ItemPage.vue'),
+      props: true,
     },
     {
       path: '*',

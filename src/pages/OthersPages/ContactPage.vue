@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="contact">
     <AppHeader/>
-    <article class="contact">
+    <article class="contact__content">
       <div class="contact__icon u-margin-bottom-medium">
         <AppIcon isColor iconName="contact-book"/>
       </div>
@@ -42,12 +42,17 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
 .contact {
-  background-color: $white;
-  padding: 10rem;
   @include center;
-  flex-direction: column;
-  box-shadow: 0 1rem 4rem $shadow-light;
-  transition: box-shadow 0.3s;
+  min-height: 100vh;
+  &__content {
+    width: 50%;
+    background-color: $white;
+    padding: 10rem;
+    @include center;
+    flex-direction: column;
+    box-shadow: 0 1rem 4rem $shadow-light;
+    transition: box-shadow 0.3s;
+  }
   &__link {
     color: $light-text;
     font-size: $default-font-size;

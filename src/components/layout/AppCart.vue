@@ -73,7 +73,6 @@ export default {
     min-height: 20rem;
     width: 100%;
     border: 0.2rem dashed $white;
-    // @include center;
   }
   &__item {
     color: $white;

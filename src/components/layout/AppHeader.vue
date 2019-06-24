@@ -41,6 +41,7 @@ export default {
   padding-right: 5rem;
   @include centerAlign;
   background-color: $background;
+  z-index: 10;
   &__nav {
     display: flex;
     font-size: $default-font-size;

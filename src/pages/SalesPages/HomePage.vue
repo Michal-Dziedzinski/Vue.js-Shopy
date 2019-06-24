@@ -12,7 +12,7 @@
 
 <script>
 import AppHeader from '@/components/layout/AppHeader.vue';
-import SearchItem from '@/components/SearchItem.vue';
+import SearchItem from '@/components/layout/SearchItem.vue';
 import ItemsList from '@/components/items/ItemsList.vue';
 import AppCart from '@/components/layout/AppCart.vue';
 
@@ -30,7 +30,7 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
 .home {
-  // padding: 10rem 5rem;
+  padding: 10rem 5rem;
   &__content {
     display: flex;
   }

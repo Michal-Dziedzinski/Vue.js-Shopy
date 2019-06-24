@@ -1,11 +1,11 @@
 <template>
-  <section class="home">
+  <div class="item">
     <AppHeader/>
-    <div class="home__content">
+    <main class="item__content">
       <AppCart/>
       <ItemDetails :id="selectedBeer"/>
-    </div>
-  </section>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     onUrlParamsChange() {
+      // FIXME:
       this.selectedBeer = this.$router.currentRoute.params.id;
     },
   },
@@ -41,8 +42,8 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/styles/main.scss';
-.home {
-  // padding: 10rem 5rem;
+.item {
+  padding: 10rem 5rem;
   &__content {
     display: flex;
   }
