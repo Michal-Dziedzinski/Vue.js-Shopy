@@ -1,18 +1,11 @@
 <template>
-  <div class="item">
-    <AppHeader/>
-    <main class="item__content">
-      <AppCart/>
-      <ItemDetails :item="item" :loading="loading"/>
-    </main>
-  </div>
+  <ItemDetails :item="item" :loading="loading"/>
 </template>
 
 <script>
-import AppHeader from '@/components/layout/AppHeader.vue';
 import ItemDetails from '@/components/items/item/ItemDetails.vue';
-import AppCart from '@/components/layout/AppCart.vue';
 import axios from 'axios';
+import getSingleBeer from '@/api';
 
 const API = 'https://api.punkapi.com/v2/beers';
 
@@ -25,30 +18,18 @@ export default {
     };
   },
   props: {
-    // FIXME:
     id: [String, Number],
   },
-  mounted() {
+  async mounted() {
     // eslint-disable-next-line
+    await console.log(getSingleBeer(this.id));
     axios.get(`${API}/${this.id}`).then((response) => {
       [this.item] = response.data;
       this.loading = false;
     });
   },
   components: {
-    AppHeader,
-    AppCart,
     ItemDetails,
   },
 };
 </script>
-
-<style scoped lang="scss">
-@import '@/assets/styles/main.scss';
-.item {
-  padding: 10rem 5rem;
-  &__content {
-    display: flex;
-  }
-}
-</style>

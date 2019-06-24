@@ -11,6 +11,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: () => import('@/pages/SalesPages/HomePage.vue'),
+      meta: { layout: 'WithCartAndSearch' },
     },
     {
       path: '/about',
@@ -27,6 +28,7 @@ export default new Router({
       name: 'itemPage',
       component: () => import('@/pages/SalesPages/ItemPage.vue'),
       props: true,
+      meta: { layout: 'WithCart' },
     },
     {
       path: '*',

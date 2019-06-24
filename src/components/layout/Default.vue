@@ -1,14 +1,15 @@
 <template>
-  <section class="container">
-    <AppHeader/>
-    <h2 class="HeadingSecondary u-margin-bottom-medium">Page Not Found</h2>
+  <section class="wrapper">
+    <AppHeader></AppHeader>
+    <slot></slot>
   </section>
 </template>
+
 <script>
 import AppHeader from '@/components/AppHeader.vue';
 
 export default {
-  name: 'NotFoundPage',
+  name: 'Default',
   components: {
     AppHeader,
   },
@@ -16,9 +17,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/styles/main.scss';
-.container {
-  @include center;
+.wrapper {
+  padding: 10rem 5rem;
   min-height: 100vh;
 }
 </style>

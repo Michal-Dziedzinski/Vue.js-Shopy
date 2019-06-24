@@ -96,8 +96,8 @@ export default {
   }
   &__delete {
     transition: transform 0.3s, opacity 0.3s;
-    height: 20px;
-    width: 20px;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     background-color: $alert;
     position: absolute;
@@ -108,11 +108,11 @@ export default {
     cursor: pointer;
     &::after {
       content: '';
-      border-bottom: 2px solid $white;
-      width: 16px;
-      height: 1px;
-      top: 9px;
-      left: 2px;
+      border-bottom: 0.2rem solid $white;
+      width: 1.6rem;
+      height: 0.1rem;
+      top: 0.9rem;
+      left: 0.2rem;
       position: absolute;
     }
   }

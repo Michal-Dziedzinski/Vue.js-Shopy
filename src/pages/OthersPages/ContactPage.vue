@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-import AppHeader from '@/components/layout/AppHeader.vue';
+import AppHeader from '@/components/AppHeader.vue';
 import AppIcon from '@/components/ui/AppIcon.vue';
 
 export default {
@@ -43,7 +43,6 @@ export default {
 @import '@/assets/styles/main.scss';
 .contact {
   @include center;
-  min-height: 100vh;
   &__content {
     width: 50%;
     background-color: $white;
@@ -52,13 +51,13 @@ export default {
     flex-direction: column;
     box-shadow: 0 1rem 4rem $shadow-light;
     transition: box-shadow 0.3s;
+    &:hover {
+      box-shadow: 0 1rem 4rem $shadow-middle;
+    }
   }
   &__link {
     color: $light-text;
     font-size: $default-font-size;
-  }
-  &:hover {
-    box-shadow: 0 1rem 4rem $shadow-middle;
   }
   &__icon {
     border: 0.3rem solid $light-blue;

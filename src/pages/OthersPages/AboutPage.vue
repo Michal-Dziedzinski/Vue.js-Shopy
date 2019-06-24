@@ -1,6 +1,5 @@
 <template>
   <section class="about">
-    <AppHeader/>
     <article class="about__content">
       <div class="about__icon u-margin-bottom-medium">
         <AppIcon isColor iconName="contact-book"/>
@@ -13,13 +12,11 @@
   </section>
 </template>
 <script>
-import AppHeader from '@/components/layout/AppHeader.vue';
 import AppIcon from '@/components/ui/AppIcon.vue';
 
 export default {
   name: 'AboutPage',
   components: {
-    AppHeader,
     AppIcon,
   },
 };
@@ -29,7 +26,7 @@ export default {
 @import '@/assets/styles/main.scss';
 .about {
   @include center;
-  min-height: 100vh;
+  height: 100%;
   &__content {
     width: 50%;
     background-color: $white;
@@ -38,9 +35,9 @@ export default {
     flex-direction: column;
     box-shadow: 0 1rem 4rem $shadow-light;
     transition: box-shadow 0.3s;
-  }
-  &:hover {
-    box-shadow: 0 1rem 4rem $shadow-middle;
+    &:hover {
+      box-shadow: 0 1rem 4rem $shadow-middle;
+    }
   }
   &__icon {
     border: 0.3rem solid $light-blue;
