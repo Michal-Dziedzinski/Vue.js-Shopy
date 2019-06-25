@@ -28,6 +28,7 @@ export default {
       searchValue: '',
     };
   },
+
   methods: {
     // eslint-disable-next-line
     handleInput() {

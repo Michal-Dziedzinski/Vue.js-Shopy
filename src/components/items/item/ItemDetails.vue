@@ -5,12 +5,14 @@
     </div>
     <div v-else class="details__content">
       <div class="details__image">
-        <ItemImage :src="item.image_url" :alt="item.name" big/>
+        <ItemImage :src="item && item.image_url" :alt="item && item.name" big/>
       </div>
       <div class="details__description">
         <div class="details__text">
-          <h2 class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small">{{item.name}}</h2>
-          <p class="Paragraph Paragraph--white">{{item.description}}</p>
+          <h2
+            class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small"
+          >{{item && item.name}}</h2>
+          <p class="Paragraph Paragraph--white">{{item && item.description}}</p>
         </div>
         <div class="details__button u-margin-left-small">
           <AppButton

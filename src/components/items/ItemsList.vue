@@ -17,29 +17,31 @@
 import ItemElement from '@/components/items/item/ItemElement.vue';
 import AppLoader from '@/components/ui/AppLoader.vue';
 import InfiniteLoading from 'vue-infinite-loading';
-import { mapMutations, mapActions, mapState } from 'vuex';
+// eslint-disable-next-line
+import { mapMutations, mapActions, mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'ItemsList',
   computed: {
     availableItems() {
-      return this.allItems.filter(
+      return this.getFilteredItems.filter(
         // eslint-disable-next-line
         (item) => !this.cartItemsIds.includes(item.id)
       );
     },
-    ...mapState(['items', 'page', 'allItems', 'cart', 'cartItemsIds']),
+    ...mapState(['itemsFragment', 'page', 'allItems', 'cartItemsIds']),
+    ...mapGetters(['getFilteredItems']),
   },
   mounted() {
     this.fetchItems(1);
   },
-  beforeDestroy() {
+  beforeMount() {
     this.REMOVE_ITEMS_FROM_LIST();
   },
   methods: {
     async infiniteHandler($state) {
       await this.fetchItems(this.page).then(() => {
-        if (this.items.length) {
+        if (this.itemsFragment.length) {
           $state.loaded();
         } else {
           $state.complete();

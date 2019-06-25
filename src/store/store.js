@@ -14,39 +14,32 @@ const types = {
 };
 
 const store = new Vuex.Store({
-  // filteredItems, uzywaj id allItems jako single source of truth
   state: {
-    items: [],
+    itemsFragment: [],
     allItems: [],
-    allItemsBuffer: [],
     page: 2,
-    cart: [], // ids
-    itemsIds: [],
     cartItemsIds: [],
+    query: '',
+  },
+  getters: {
+    getFilteredItems(state) {
+      return state.allItems.filter((item) =>
+        item.name.toLowerCase().includes(state.query.toLowerCase())
+      );
+    },
   },
   mutations: {
     [types.ADD_ITEM_TO_LIST](state, payload) {
       state.allItems = [...state.allItems, ...payload];
-      state.allItemsBuffer = [...state.allItemsBuffer, ...payload];
-      const newIds = [];
-      // niepotrzebne
-      payload.forEach((element) => {
-        newIds.push(element.id);
-      });
-      state.itemsIds = [...state.cartItemsIds, ...newIds];
-      state.items = [...payload];
+      state.itemsFragment = [...payload];
       state.page++;
     },
     [types.REMOVE_ITEMS_FROM_LIST](state) {
       state.allItems = [];
-      state.allItemsBuffer = [];
       state.page = 2;
     },
     [types.FILTER_ITEMS_FROM_LIST](state, payload) {
-      state.allItems = state.allItemsBuffer;
-      state.allItems = state.allItems.filter((item) =>
-        item.name.toLowerCase().includes(payload.toLowerCase())
-      );
+      state.query = payload;
     },
     [types.ADD_ITEM_TO_CART]({ cart, cartItemsIds }, payload) {
       cart.push(payload);

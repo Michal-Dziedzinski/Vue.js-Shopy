@@ -41,16 +41,17 @@ export default {
   },
   computed: {
     items() {
-      // console.log(this.cartItemsIds);
       // eslint-disable-next-line
-      return this.allItems.map((item) => !this.cartItemsIds.includes(item.id));
+      return this.allItems.filter(
+        // eslint-disable-next-line
+        (item) =>
+          // eslint-disable-next-line
+          this.cartItemsIds.includes(item.id)
+      );
     },
     ...mapState(['cartItemsIds', 'allItems']),
   },
-  // computed: mapState({
-  //   // eslint-disable-next-line
-  //   items: (state) => state.cart,
-  // }),
+
   methods: {
     removeFromCart(index) {
       this.REMOVE_ITEM_FROM_CART(index);
