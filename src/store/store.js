@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import { getItems } from '@/api';
 
 Vue.use(Vuex);
 const types = {
@@ -66,8 +66,7 @@ const store = new Vuex.Store({
   },
   actions: {
     async fetchItems({ commit }, payload) {
-      const res = await axios.get(payload.apiRequest);
-      const { data } = res;
+      const data = await getItems(payload);
       await commit(types.ADD_ITEM_TO_LIST, data);
     },
   },

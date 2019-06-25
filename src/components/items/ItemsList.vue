@@ -19,8 +19,6 @@ import AppLoader from '@/components/ui/AppLoader.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 import { mapMutations, mapActions, mapState } from 'vuex';
 
-const API = 'https://api.punkapi.com/v2/beers';
-
 export default {
   name: 'ItemsList',
   computed: {
@@ -33,16 +31,14 @@ export default {
     ...mapState(['items', 'page', 'allItems', 'cart', 'cartItemsIds']),
   },
   mounted() {
-    this.fetchItems({ apiRequest: `${API}?page=1&per_page=20` });
+    this.fetchItems(1);
   },
   beforeDestroy() {
     this.REMOVE_ITEMS_FROM_LIST();
   },
   methods: {
     async infiniteHandler($state) {
-      await this.fetchItems({
-        apiRequest: `${API}?page=${this.page}&per_page=20`,
-      }).then(() => {
+      await this.fetchItems(this.page).then(() => {
         if (this.items.length) {
           $state.loaded();
         } else {

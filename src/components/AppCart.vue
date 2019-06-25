@@ -39,10 +39,18 @@ export default {
   components: {
     AppIcon,
   },
-  computed: mapState({
-    // eslint-disable-next-line
-    items: (state) => state.cart,
-  }),
+  computed: {
+    items() {
+      // console.log(this.cartItemsIds);
+      // eslint-disable-next-line
+      return this.allItems.map((item) => !this.cartItemsIds.includes(item.id));
+    },
+    ...mapState(['cartItemsIds', 'allItems']),
+  },
+  // computed: mapState({
+  //   // eslint-disable-next-line
+  //   items: (state) => state.cart,
+  // }),
   methods: {
     removeFromCart(index) {
       this.REMOVE_ITEM_FROM_CART(index);
