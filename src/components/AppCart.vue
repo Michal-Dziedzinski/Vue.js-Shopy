@@ -22,10 +22,10 @@
           v-if="getItemsToCart.length === 0"
         >Cart is empty</p>
         <ul class="cart__list">
-          <li class="cart__item" v-for="(item, index) in getItemsToCart" :key="item.id">
+          <li class="cart__item" v-for="item in getItemsToCart" :key="item.id">
             <span class="cart__price">{{item.abv}}</span>
             {{item.name}}
-            <div class="cart__delete" @click="removeFromCart(index)"></div>
+            <div class="cart__delete" @click="removeFromCart(item.id)"></div>
           </li>
         </ul>
       </div>

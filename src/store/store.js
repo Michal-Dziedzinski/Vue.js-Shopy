@@ -1,7 +1,9 @@
 /* eslint-disable */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getItems } from '@/api';
+import {
+  getItems
+} from '@/api';
 
 Vue.use(Vuex);
 const types = {
@@ -45,13 +47,16 @@ const store = new Vuex.Store({
     [types.FILTER_ITEMS_FROM_LIST](state, payload) {
       state.query = payload;
     },
-    [types.ADD_ITEM_TO_CART]({ cart, cartItemsIds }, payload) {
-      cart.push(payload);
+    [types.ADD_ITEM_TO_CART]({
+      cartItemsIds
+    }, payload) {
       cartItemsIds.push(payload.id);
     },
-    [types.REMOVE_ITEM_FROM_CART]({ cart, cartItemsIds }, payload) {
-      cart.splice(payload, 1);
-      cartItemsIds.splice(payload, 1);
+    [types.REMOVE_ITEM_FROM_CART](
+      state, payload) {
+      state.cartItemsIds = state.cartItemsIds.filter((id) => {
+        return id !== payload
+      });
     },
     [types.SET_QUERY](state, payload) {
       state.query = payload;
@@ -65,7 +70,9 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    async fetchItems({ commit }, payload) {
+    async fetchItems({
+      commit
+    }, payload) {
       const data = await getItems(payload);
       await commit(types.ADD_ITEM_TO_LIST, data);
     },
@@ -73,9 +80,15 @@ const store = new Vuex.Store({
 });
 
 // Subscribe to store updates
-store.subscribe((mutation, { cart, cartItemsIds }) => {
+store.subscribe((mutation, {
+  cart,
+  cartItemsIds
+}) => {
   // Store the state object as a JSON string
-  localStorage.setItem('store', JSON.stringify({ cart, cartItemsIds }));
+  localStorage.setItem('store', JSON.stringify({
+    cart,
+    cartItemsIds
+  }));
 });
 
 export default store;
