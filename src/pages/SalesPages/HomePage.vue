@@ -12,8 +12,8 @@ export default {
     ItemsList,
   },
   mounted() {
-    console.log(this.$route.params.filter);
-    this.SET_QUERY(this.$route.params.filter || '');
+    console.log(this.$route.query.name);
+    this.SET_QUERY(this.$route.query.name || '');
   },
   methods: {
     ...mapMutations(['SET_QUERY']),
