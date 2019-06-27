@@ -27,6 +27,9 @@ const store = new Vuex.Store({
         item.name.toLowerCase().includes(state.query.toLowerCase())
       );
     },
+    getItemsToCart(state) {
+      return state.allItems.filter((item) => state.cartItemsIds.includes(item.id));
+    },
   },
   mutations: {
     [types.ADD_ITEM_TO_LIST](state, payload) {

@@ -14,12 +14,15 @@
         <AppIcon iconName="shopping-cart"/>
         <p
           class="Paragraph--white Paragraph--big u-margin-left-small"
-        >Cart {{items.length > 0 ? `(${items.length})` : null}}</p>
+        >Cart {{getItemsToCart.length > 0 ? `(${getItemsToCart.length})` : null}}</p>
       </div>
       <div class="cart__bucket">
-        <p class="cart__info Paragraph Paragraph--white" v-if="items.length === 0">Cart is empty</p>
+        <p
+          class="cart__info Paragraph Paragraph--white"
+          v-if="getItemsToCart.length === 0"
+        >Cart is empty</p>
         <ul class="cart__list">
-          <li class="cart__item" v-for="(item, index) in items" :key="item.id">
+          <li class="cart__item" v-for="(item, index) in getItemsToCart" :key="item.id">
             <span class="cart__price">{{item.abv}}</span>
             {{item.name}}
             <div class="cart__delete" @click="removeFromCart(index)"></div>
@@ -32,7 +35,7 @@
 
 <script>
 import AppIcon from '@/components/ui/AppIcon.vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'AppCart',
@@ -40,16 +43,7 @@ export default {
     AppIcon,
   },
   computed: {
-    items() {
-      // eslint-disable-next-line
-      return this.allItems.filter(
-        // eslint-disable-next-line
-        (item) =>
-          // eslint-disable-next-line
-          this.cartItemsIds.includes(item.id)
-      );
-    },
-    ...mapState(['cartItemsIds', 'allItems']),
+    ...mapGetters(['getItemsToCart']),
   },
 
   methods: {
