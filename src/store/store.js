@@ -11,6 +11,7 @@ const types = {
   ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
   REMOVE_ITEM_FROM_CART: 'REMOVE_ITEM_FROM_CART',
   INITIALIZE_STORE: 'INITIALIZE_STORE',
+  SET_QUERY: 'SET_QUERY',
 };
 
 const store = new Vuex.Store({
@@ -51,6 +52,9 @@ const store = new Vuex.Store({
     [types.REMOVE_ITEM_FROM_CART]({ cart, cartItemsIds }, payload) {
       cart.splice(payload, 1);
       cartItemsIds.splice(payload, 1);
+    },
+    [types.SET_QUERY](state, payload) {
+      state.query = payload;
     },
     [types.INITIALIZE_STORE](state) {
       // Check if the ID exists

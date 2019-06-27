@@ -33,11 +33,15 @@ export default {
     // eslint-disable-next-line
     handleInput() {
       this.FILTER_ITEMS_FROM_LIST(this.searchValue);
+      this.$router.replace({ query: { filter: this.searchValue } });
     },
     ...mapMutations(['FILTER_ITEMS_FROM_LIST']),
   },
   components: {
     AppIcon,
+  },
+  mounted() {
+    this.searchValue = this.$route.params.filte;
   },
 };
 </script>
