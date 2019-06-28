@@ -54,9 +54,7 @@ const store = new Vuex.Store({
     },
     [types.REMOVE_ITEM_FROM_CART](
       state, payload) {
-      state.cartItemsIds = state.cartItemsIds.filter((id) => {
-        return id !== payload
-      });
+      state.cartItemsIds = state.cartItemsIds.filter((id) => id !== payload);
     },
     [types.SET_QUERY](state, payload) {
       state.query = payload;
