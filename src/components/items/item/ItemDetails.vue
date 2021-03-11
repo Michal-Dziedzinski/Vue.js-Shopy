@@ -1,25 +1,21 @@
 <template>
   <article class="details">
     <div v-if="loading" class="details__loader">
-      <AppLoader/>
+      <AppLoader />
     </div>
     <div v-else class="details__content">
       <div class="details__image">
-        <ItemImage :src="item && item.image_url" :alt="item && item.name" big/>
+        <ItemImage :src="item && item.image_url" :alt="item && item.name" big />
       </div>
       <div class="details__description">
         <div class="details__text">
-          <h2
-            class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small"
-          >{{item && item.name}}</h2>
-          <p class="Paragraph Paragraph--white">{{item && item.description}}</p>
+          <h2 class="HeadingSecondary HeadingSecondary--white u-margin-bottom-small">
+            {{ item && item.name }}
+          </h2>
+          <p class="Paragraph Paragraph--white">{{ item && item.description }}</p>
         </div>
         <div class="details__button u-margin-left-small">
-          <AppButton
-            :text="isClicked ? 'Added' : 'Add to Card'"
-            :isOpacity="isClicked"
-            @clicked="addToCart"
-          />
+          <AppButton :text="getButtonText" :isOpacity="isClicked" @clicked="addToCart" />
         </div>
       </div>
     </div>
@@ -34,10 +30,10 @@ import { mapMutations } from 'vuex';
 
 export default {
   name: 'ItemDetails',
-  data() {
-    return {
-      isClicked: false,
-    };
+  components: {
+    AppLoader,
+    ItemImage,
+    AppButton,
   },
   props: {
     item: {
@@ -48,17 +44,22 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      isClicked: false,
+    };
+  },
+  computed: {
+    getButtonText() {
+      return this.isClicked ? 'Added' : 'Add to Card';
+    },
+  },
   methods: {
     addToCart() {
       this.isClicked = true;
       this.ADD_ITEM_TO_CART(this.item);
     },
     ...mapMutations(['ADD_ITEM_TO_CART']),
-  },
-  components: {
-    AppLoader,
-    ItemImage,
-    AppButton,
   },
 };
 </script>

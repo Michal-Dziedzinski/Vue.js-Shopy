@@ -1,9 +1,12 @@
 <template>
   <button
-    :class="!isOpacity ? 'button' : 'button button--opacity'"
+    class="button"
+    :class="{ 'button--opacity': !isOpacity }"
     :disabled="isOpacity"
-    @click="$emit('clicked', true)"
-  >{{text}}</button>
+    @click="clickButton"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script>
@@ -17,6 +20,11 @@ export default {
     isOpacity: {
       type: Boolean,
       required: false,
+    },
+  },
+  methods: {
+    clickButton() {
+      this.$emit('clicked');
     },
   },
 };
